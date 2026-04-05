@@ -10,15 +10,10 @@ jobs:
   Analysis:
     runs-on: ubuntu-latest
     steps:
-      - name: Analyze front with SonarCloud
-        uses: SonarSource/sonarqube-scan-action@master
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@v4
         env:
           SONAR_TOKEN: ${{ secrets.TOKEN_SONAR }}
-        with:
-          projectBaseDir: .
-          args:
-            -Dsonar.projectKey=DenisNDJ_OC_NDJANDADenis_Projet7
-            -Dsonar.organization=denisndj
 
   test:
     needs: Analysis
