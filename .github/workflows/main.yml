@@ -11,10 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v4
+        uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.TOKEN_SONAR }}
-
+        with:
+          args: >
+            -Dsonar.organization=denisndj
+            -Dsonar.projectKey=DenisNDJ_OC_NDJANDADenis_Projet7
+            -Dsonar.sources=front,back
   test:
     needs: Analysis
     runs-on: ubuntu-latest
