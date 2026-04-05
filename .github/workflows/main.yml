@@ -81,6 +81,8 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           context: back
+          file: ./Dockerfile
+          target: back 
           push: true
           tags: ghcr.io/denisndj/oc_ndjandadenis_projet7_back:latest
 
@@ -88,5 +90,7 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           context: front
+          file: ./Dockerfile
+          target: front 
           push: true
           tags: ghcr.io/denisndj/oc_ndjandadenis_projet7_front:latest
