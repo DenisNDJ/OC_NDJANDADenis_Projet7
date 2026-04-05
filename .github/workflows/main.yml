@@ -15,9 +15,11 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.TOKEN_SONAR }}
         with:
+          projectBaseDir: .
           args:
             -Dsonar.projectKey=DenisNDJ_OC_NDJANDADenis_Projet7
             -Dsonar.organization=denisndj
+            -Dsonar.sources=front/src/
 
   test:
     needs: Analysis
