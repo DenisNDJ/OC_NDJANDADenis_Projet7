@@ -18,7 +18,6 @@ jobs:
           args:
             -Dsonar.projectKey=DenisNDJ_OC_NDJANDADenis_Projet7
             -Dsonar.organization=denisndj
-            -Dsonar.sources=front/src,back/src
 
   test:
     needs: Analysis
