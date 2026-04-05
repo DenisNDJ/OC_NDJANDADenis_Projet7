@@ -13,32 +13,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Dépendances Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: "21"
-          cache: gradle
-
-      - name: Dépendances Node
-        uses: actions/setup-node@v6
-        with:
-          node-version: "20"
-          cache: npm
-          cache-dependency-path: front/package-lock.json
-
-      - name: Install front dependencies
-        working-directory: front
-        run: npm ci
-
-      - name: Build and test back
-        working-directory: back
-        run: chmod +x gradlew
-
-      - name: Build and test back
-        working-directory: back
-        run: ./gradlew build
-
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
@@ -50,7 +24,6 @@ jobs:
             -Dsonar.sources=front,back
             -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/**,**/.next/**,**/coverage/**,**/*.java
   test:
-    needs: Analysis
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -82,4 +55,38 @@ jobs:
         with:
           name: Tests
           path: test_result/**/*.xml
-          reporter: java-junit 
+          reporter: java-junit
+
+  build-and-push-image:
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
+      
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.TOKEN_GITHUB }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v7
+        with:
+          context: back
+          push: true
+          tags: ghcr.io/denisndj/oc_ndjandadenis_projet7_back:latest
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v7
+        with:
+          context: front
+          push: true
+          tags: ghcr.io/denisndj/oc_ndjandadenis_projet7_front:latest
