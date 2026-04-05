@@ -7,22 +7,6 @@ permissions:
   contents: read
 
 jobs:
-  Analysis:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v6
-        env:
-          SONAR_TOKEN: ${{ secrets.TOKEN_SONAR }}
-        with:
-          args: >
-            -Dsonar.organization=denisndj
-            -Dsonar.projectKey=DenisNDJ_OC_NDJANDADenis_Projet7
-            -Dsonar.sources=front,back
-            -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/**,**/.next/**,**/coverage/**,**/*.java
   test:
     runs-on: ubuntu-latest
     permissions:
@@ -56,6 +40,17 @@ jobs:
           name: Tests
           path: test_result/**/*.xml
           reporter: java-junit
+          
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@v6
+        env:
+          SONAR_TOKEN: ${{ secrets.TOKEN_SONAR }}
+        with:
+          args: >
+            -Dsonar.organization=denisndj
+            -Dsonar.projectKey=DenisNDJ_OC_NDJANDADenis_Projet7
+            -Dsonar.sources=front,back
+            -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/**,**/.next/**,**/coverage/**,**/*.java
 
   build-and-push-image:
     permissions:
