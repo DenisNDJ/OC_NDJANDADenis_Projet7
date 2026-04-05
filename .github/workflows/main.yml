@@ -48,6 +48,7 @@ jobs:
             -Dsonar.organization=denisndj
             -Dsonar.projectKey=DenisNDJ_OC_NDJANDADenis_Projet7
             -Dsonar.sources=front,back
+            -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/**,**/.next/**,**/coverage/**,**/*.java
   test:
     needs: Analysis
     runs-on: ubuntu-latest
