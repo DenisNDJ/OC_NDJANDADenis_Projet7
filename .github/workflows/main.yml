@@ -80,7 +80,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v7
         with:
-          context: back
+          context: .
           file: ./Dockerfile
           target: back 
           push: true
@@ -89,7 +89,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v7
         with:
-          context: front
+          context: .
           file: ./Dockerfile
           target: front 
           push: true
