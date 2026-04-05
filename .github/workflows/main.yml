@@ -1,4 +1,4 @@
-name: CI (Test/Build/Release)
+name: CI (Test/Build/Release/SonarCloud)
 
 on:
   push:
