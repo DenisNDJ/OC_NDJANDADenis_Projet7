@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<testsuite name="Chrome Headless 146.0.0.0 (Windows 10)" package="" timestamp="2026-04-05T19:37:47" id="0" hostname="LAPTOP-JA0C7SPB" tests="8" errors="0" failures="0" time="0.263">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/146.0.0.0 Safari/537.36"/>
+  </properties>
+  <testcase name="PersonService should be created" time="0.032" classname="Chrome_Headless_146_0_0_0_(Windows_10).PersonService"/>
+  <testcase name="OrganizationService should be created" time="0.005" classname="Chrome_Headless_146_0_0_0_(Windows_10).OrganizationService"/>
+  <testcase name="AppComponent should create the app" time="0.076" classname="Chrome_Headless_146_0_0_0_(Windows_10).AppComponent"/>
+  <testcase name="AppComponent should render title" time="0.008" classname="Chrome_Headless_146_0_0_0_(Windows_10).AppComponent"/>
+  <testcase name="AppComponent should have the 'MicroCRM' title" time="0.007" classname="Chrome_Headless_146_0_0_0_(Windows_10).AppComponent"/>
+  <testcase name="MainDashboardComponent should create" time="0.052" classname="Chrome_Headless_146_0_0_0_(Windows_10).MainDashboardComponent"/>
+  <testcase name="IndividualDetailsComponent should create" time="0.066" classname="Chrome_Headless_146_0_0_0_(Windows_10).IndividualDetailsComponent"/>
+  <testcase name="IndividualDetailsComponent should create" time="0.017" classname="Chrome_Headless_146_0_0_0_(Windows_10).IndividualDetailsComponent"/>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>
