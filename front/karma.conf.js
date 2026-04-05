@@ -31,7 +31,7 @@ module.exports = function (config) {
       reporters: [{ type: "html" }, { type: "text-summary" }],
     },
     reporters: ["progress", "kjhtml","junit"],
-    browsers: ["ChromeHeadlessNoSandbox", "ChromeHeadless", "Chrome"],
+    browsers: ["ChromeHeadlessNoSandbox", "ChromeHeadless"],
     customLaunchers: {
       ChromeHeadlessNoSandbox: {
         base: "ChromeHeadless",
