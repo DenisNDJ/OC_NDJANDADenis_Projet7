@@ -1,4 +1,4 @@
-FROM node as front-build
+FROM node:18-alpine as front-build
 
 COPY ./front /src
 
@@ -31,11 +31,9 @@ EXPOSE 443
 
 CMD ["/usr/sbin/caddy", "run"]
 
-FROM alpine:3.19 as back
+FROM eclipse-temurin:21-jre-alpine as back
 
 COPY --from=back-build /src/build/libs/microcrm-0.0.1-SNAPSHOT.jar /app/back/microcrm-0.0.1-SNAPSHOT.jar
-
-RUN apk add openjdk21-jre-headless
 
 WORKDIR /app
 
