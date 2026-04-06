@@ -89,3 +89,21 @@ jobs:
           target: front 
           push: true
           tags: ghcr.io/denisndj/oc_ndjandadenis_projet7_front:latest
+
+  release:
+    needs: build-and-push-image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Semantic Release Front
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          semantic_version: 24
+          working_directory: .
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
