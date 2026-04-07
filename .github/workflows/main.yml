@@ -2,6 +2,9 @@ name: CI (Test/Buildd/Release/SonarCloud)
 
 on:
   push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: read
