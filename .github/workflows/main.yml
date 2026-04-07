@@ -50,6 +50,7 @@ jobs:
             -Dsonar.organization=denisndj
             -Dsonar.projectKey=DenisNDJ_OC_NDJANDADenis_Projet7
             -Dsonar.sources=front,back
+            -Dsonar.java.binaries=back/build/classes
 
   build-and-push-image:
     permissions:
