@@ -9,10 +9,13 @@ RUN npm ci \
 
 FROM gradle:jdk17 as back-build
 
-COPY ./back /src
-
 WORKDIR /src
 
+COPY back/src ./src
+COPY back/gradle ./gradle
+COPY back/gradlew back/gradlew.bat back/build.gradle back/settings.gradle ./
+
+RUN sed -i 's/\r$//' gradlew
 RUN chmod +x gradlew
 
 RUN ./gradlew build
@@ -43,11 +46,13 @@ CMD ["java", "-jar", "/app/back/microcrm-0.0.1-SNAPSHOT.jar"]
 
 FROM alpine:3.19 as standalone
 
-COPY --from=front / /
-COPY --from=back / /
+COPY --from=front-build /src/dist/microcrm/browser /app/front
+COPY --from=back-build /src/build/libs/microcrm-0.0.1-SNAPSHOT.jar /app/back/microcrm-0.0.1-SNAPSHOT.jar
+
+COPY misc/docker/Caddyfile /app/Caddyfile
 COPY misc/docker/supervisor.ini /app/supervisor.ini
 
-RUN apk add supervisor
+RUN apk add --no-cache supervisor caddy openjdk21-jre
 
 WORKDIR /app
 
